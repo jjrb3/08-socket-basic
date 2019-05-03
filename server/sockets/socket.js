@@ -16,10 +16,14 @@ io.on('connection', (client) => {
     });
 
     // Listen client
-    client.on('sendMessage', (message, callback) => {
+    client.on('sendMessage', (data, callback) => {
 
-        //console.log(message);
+        console.log(data);
 
+        // Send all people
+        client.broadcast.emit('sendMessage', data);
+
+        /*
         if (message.user) {
             callback({
                 success: true,
@@ -31,6 +35,6 @@ io.on('connection', (client) => {
                 success: false,
                 message: 'Error in information'
             });
-        }
+        }*/
     });
 });
